@@ -40,6 +40,7 @@ class ResLasVegasSpider(scrapy.Spider):
         x = [''.join(c for c in s if c not in string.punctuation) for s in brief_des]
         brief_des = ''.join(x)
         open_now =  response.xpath('//span[@class = "public-location-hours-LocationHours__bold--BYVNh"]//text()').extract_first()
+        attributes = response.xpath('//*[@class = "restaurants-details-card-TagCategories__tagText--2170b"]/text()').extract()
 
-        yield {'text': text, 'rating': rating, 'open': open_now,'review_len': review_len, 'price': price, 'description': description, 'brief_des': brief_des, 'location': location}
+        yield {'text': text, 'rating': rating, 'open': open_now,'review_len': review_len, 'price': price, 'description': description, 'brief_des': brief_des,'attribute': attributes, 'location': location}
 
